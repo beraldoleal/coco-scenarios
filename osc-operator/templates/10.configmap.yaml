@@ -1,0 +1,12 @@
+{{- $config := index .Values .Values.provider }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: peer-pods-cm
+  namespace: openshift-sandboxed-containers-operator
+data:
+  CLOUD_PROVIDER: "{{ .Values.provider }}"
+  DISABLECVM: "{{ .Values.disableCVM }}"
+{{- range $key, $value := $config }}
+  {{ $key }}: "{{ $value }}"
+{{- end }}

@@ -1,0 +1,32 @@
+operatorVersion: "1.9.0"
+
+# For pre-released builds (QE CatalogSource)
+customCatalog:
+  enabled: true
+  operatorBuild: 10
+
+# Cloud mode = peerpods
+cloudMode: true
+
+# If cloud, you need the following values:
+# azure, gcp, aws, libvirt
+provider: "gcp"
+
+gcp:
+  PODVM_IMAGE_NAME: ""
+  GCP_PROJECT_ID: ""
+  GCP_ZONE: ""
+  GCP_NETWORK: "default"
+  GCP_MACHINE_TYPE: "n1-standard-1"
+  PROXY_TIMEOUT: "5m"
+  DISABLECVM: "true"
+
+azure:
+  AZURE_IMAGE_ID: ""
+  AZURE_RESOURCE_GROUP: ""
+  AZURE_REGION: ""
+  AZURE_SUBNET_ID: ""
+  AZURE_NSG_ID: ""
+  VXLAN_PORT: "9000"
+  PROXY_TIMEOUT: "5m"
+  DISABLECVM: "true"
