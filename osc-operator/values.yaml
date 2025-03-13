@@ -3,7 +3,7 @@ operatorVersion: "1.9.0"
 # For pre-released builds (QE CatalogSource)
 customCatalog:
   enabled: true
-  operatorBuild: 10
+  operatorBuild: 12
 
 # Cloud mode = peerpods
 cloudMode: true
@@ -19,7 +19,7 @@ gcp:
   GCP_NETWORK: "default"
   GCP_MACHINE_TYPE: "n1-standard-1"
   PROXY_TIMEOUT: "5m"
-  DISABLECVM: "true"
+  DISABLECVM: true
 
 azure:
   AZURE_IMAGE_ID: ""
@@ -29,4 +29,4 @@ azure:
   AZURE_NSG_ID: ""
   VXLAN_PORT: "9000"
   PROXY_TIMEOUT: "5m"
-  DISABLECVM: "true"
+  DISABLECVM: true
