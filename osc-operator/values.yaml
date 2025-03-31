@@ -3,10 +3,13 @@ operatorVersion: "1.9.0"
 # For pre-released builds (QE CatalogSource)
 customCatalog:
   enabled: true
-  operatorBuild: 12
+  operatorBuild: 23
 
 # Cloud mode = peerpods
 cloudMode: true
+
+# pre-built or from-scratch
+podvmMethod: "pre-built"
 
 # If cloud, you need the following values:
 # azure, gcp, aws, libvirt
@@ -14,8 +17,8 @@ provider: "gcp"
 
 gcp:
   PODVM_IMAGE_NAME: ""
-  GCP_PROJECT_ID: ""
-  GCP_ZONE: ""
+  GCP_PROJECT_ID: "it-cloud-gcp-prod-osc-devel"
+  GCP_ZONE: "us-central1-a"
   GCP_NETWORK: "default"
   GCP_MACHINE_TYPE: "n1-standard-1"
   PROXY_TIMEOUT: "5m"

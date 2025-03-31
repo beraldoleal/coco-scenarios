@@ -18,7 +18,15 @@ metadata:
   namespace: openshift-sandboxed-containers-operator
 data:
   IMAGE_TYPE: pre-built
-  PODVM_IMAGE_URI: oci::quay.io/beraldoleal/podvm-bootc-rhel9-generic:{{ .Values.operatorVersion }}-{{ .Values.customCatalog.operatorBuild }}::/podvm.qcow2
+  PODVM_IMAGE_URI: bootc::quay.io/beraldoleal/podvm-bootc-rhel9-generic:{{ .Values.operatorVersion }}-{{ .Values.customCatalog.operatorBuild }}::/podvm.qcow2
+  IMAGE_BASE_NAME: "podvm-image"
+  IMAGE_VERSION_MAJ_MIN: "0.0"
+
+  INSTALL_PACKAGES: "no"
+  DISABLE_CLOUD_CONFIG: "true"
+  UPDATE_PEERPODS_CM: "yes"
+  BOOT_FIPS: "no"
+
   BOOTC_BUILD_CONFIG: |
     [[customizations.user]]
     name = "peerpod"
