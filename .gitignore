@@ -1,4 +1,5 @@
 latest
 clusterbot.gcp
 *_auth.json
-
+trustee-operator/files/*
+!trustee-operator/files/.gitkeep

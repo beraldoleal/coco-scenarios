@@ -1,0 +1,20 @@
+---
+global:
+  hubClusterDomain: hub.example.com
+  localCluster: local.example.com
+
+trustee:
+  route:
+    enabled: true
+
+    # TLS termination type:
+    # - edge: TLS ends at the router (default)
+    # - passthrough: TLS passes through to the pod
+    # - reencrypt: TLS between client and router, and router and pod
+    termination: edge
+
+    # Insecure traffic handling:
+    # - None: reject HTTP
+    # - Redirect: redirect HTTP to HTTPS
+    # - Allow: serve both HTTP and HTTPS
+    insecurePolicy: Allow

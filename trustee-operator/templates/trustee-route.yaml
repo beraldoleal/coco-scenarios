@@ -1,0 +1,15 @@
+{{- if .Values.trustee.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: kbs-service
+spec:
+  to:
+    kind: Service
+    name: kbs-service
+  port:
+    targetPort: kbs-port
+  tls:
+    termination: {{ .Values.trustee.route.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.trustee.route.insecurePolicy }}
+{{- end }}
