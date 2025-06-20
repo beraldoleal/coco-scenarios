@@ -1,0 +1,23 @@
+# -1: Wait for CRD before applying KbsConfig
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-kbsconfig-crd
+  namespace: trustee-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  template:
+    spec:
+      containers:
+        - name: wait-crd
+          image: registry.access.redhat.com/ubi9/ubi-minimal
+          command:
+            - /bin/sh
+            - -c
+            - |
+              until kubectl get crd kbsconfigs.confidentialcontainers.org; do
+                echo "Waiting for KbsConfig CRD..."
+                sleep 5
+              done
+      restartPolicy: OnFailure
