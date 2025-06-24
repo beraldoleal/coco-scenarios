@@ -3,18 +3,22 @@ global:
   hubClusterDomain: hub.example.com
   localCluster: local.example.com
 
-trustee:
-  route:
-    enabled: true
+isDevBuild: true
 
-    # TLS termination type:
-    # - edge: TLS ends at the router (default)
-    # - passthrough: TLS passes through to the pod
-    # - reencrypt: TLS between client and router, and router and pod
-    termination: edge
+# Only used by dev builds. Default is to use latest image.
+image: quay.io/redhat-user-workloads/ose-osc-tenant/trustee-fbc-4-19:on-pr-4b6aec2e163ba59a6cef582a4f103411a30ff98f
 
-    # Insecure traffic handling:
-    # - None: reject HTTP
-    # - Redirect: redirect HTTP to HTTPS
-    # - Allow: serve both HTTP and HTTPS
-    insecurePolicy: Allow
+route:
+  enabled: true
+
+  # TLS termination type:
+  # - edge: TLS ends at the router (default)
+  # - passthrough: TLS passes through to the pod
+  # - reencrypt: TLS between client and router, and router and pod
+  termination: edge
+
+  # Insecure traffic handling:
+  # - None: reject HTTP
+  # - Redirect: redirect HTTP to HTTPS
+  # - Allow: serve both HTTP and HTTPS
+  insecurePolicy: Allow

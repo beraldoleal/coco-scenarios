@@ -1,4 +1,4 @@
-{{- if .Values.trustee.route.enabled }}
+{{- if .Values.route.enabled }}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
@@ -10,6 +10,6 @@ spec:
   port:
     targetPort: kbs-port
   tls:
-    termination: {{ .Values.trustee.route.termination }}
-    insecureEdgeTerminationPolicy: {{ .Values.trustee.route.insecurePolicy }}
+    termination: {{ .Values.route.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.insecurePolicy }}
 {{- end }}
