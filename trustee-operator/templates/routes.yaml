@@ -1,8 +1,10 @@
-{{- if .Values.route.enabled }}
+{{- if .Values.crossCluster.enabled }}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: kbs-service
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   to:
     kind: Service
@@ -10,6 +12,6 @@ spec:
   port:
     targetPort: kbs-port
   tls:
-    termination: {{ .Values.route.termination }}
-    insecureEdgeTerminationPolicy: {{ .Values.route.insecurePolicy }}
+    termination: {{ .Values.crossCluster.route.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.crossCluster.route.insecurePolicy }}
 {{- end }}

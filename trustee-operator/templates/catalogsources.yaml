@@ -4,11 +4,11 @@ metadata:
   name: trustee-operator-dev-catalog
   namespace: openshift-marketplace
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   displayName: Trustee Operator Dev Catalog
   sourceType: grpc
-  image: "{{ .Values.image | default "quay.io/redhat-user-workloads/ose-osc-tenant/trustee-fbc-4-19:latest" }}"
+  image: "{{ .Values.dev.image | default "quay.io/redhat-user-workloads/ose-osc-tenant/trustee-fbc-4-19:latest" }}"
   updateStrategy:
     registryPoll:
       interval: 5m

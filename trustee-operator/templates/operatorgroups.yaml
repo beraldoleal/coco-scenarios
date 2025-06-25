@@ -4,7 +4,7 @@ kind: OperatorGroup
 metadata:
   name: trustee-operator-group
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   targetNamespaces:
   - trustee-operator-system

@@ -3,10 +3,10 @@ kind: Subscription
 metadata:
   name: trustee-operator
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   channel: stable
   installPlanApproval: Automatic
   name: trustee-operator
-  source: {{ if or .Values.isDevBuild (hasKey .Values "image") }}trustee-operator-dev-catalog{{ else }}redhat-operators{{ end }}
+  source: {{ if .Values.dev.enabled }}trustee-operator-dev-catalog{{ else }}redhat-operators{{ end }}
   sourceNamespace: openshift-marketplace

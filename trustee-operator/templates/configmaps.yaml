@@ -2,6 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: resource-policy
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
 data:
   policy.rego:
     package policy
@@ -11,6 +13,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: rvps-reference-values
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
 data:
   reference-values.json: |
     [
@@ -20,6 +24,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kbs-config-cm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
 data:
   kbs-config.toml: |
     [http_server]

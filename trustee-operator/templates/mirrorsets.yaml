@@ -3,7 +3,7 @@ kind: ImageTagMirrorSet
 metadata:
   name: trustee-registry
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   imageTagMirrors:
     - mirrors:
@@ -24,7 +24,7 @@ kind: ImageDigestMirrorSet
 metadata:
   name: trustee-registry
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
 spec:
   imageDigestMirrors:
     - mirrors:

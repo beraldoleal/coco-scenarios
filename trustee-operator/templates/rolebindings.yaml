@@ -1,25 +1,49 @@
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: trustee-manager
-  annotations:
-    argocd.argoproj.io/sync-wave: "-2"
-rules:
-  - apiGroups: ["apiextensions.k8s.io", "route.openshift.io"]
-    resources: ["customresourcedefinitions", "routes"]
-    verbs: ["create", "get", "list", "watch", "delete"]
----
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRole
+# metadata:
+#   name: trustee-manager
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-3"
+# rules:
+#   - apiGroups: ["apiextensions.k8s.io"]
+#     resources: ["customresourcedefinitions"]
+#     verbs: ["create", "get", "list", "watch", "delete"]
+#   - apiGroups: ["route.openshift.io"]
+#     resources: ["routes"]
+#     verbs: ["create", "get", "list", "watch", "delete"]
+#   - apiGroups: [""]
+#     resources: ["pods"]
+#     verbs: ["create", "get", "list", "watch", "delete"]
+#   - apiGroups: ["confidentialcontainers.org"]
+#     resources: ["kbsconfigs"]
+#     verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
+#---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: allow-argocd
+  name: argocd-app-controller-admin
   annotations:
-    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-wave: "-3"
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
     namespace: openshift-gitops
-roleRef:
-  kind: ClusterRole
-  name: trustee-manager
-  apiGroup: rbac.authorization.k8s.io
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRoleBinding
+# metadata:
+#   name: allow-argocd
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "-3"
+# subjects:
+#   - kind: ServiceAccount
+#     name: openshift-gitops-argocd-application-controller
+#     namespace: openshift-gitops
+# roleRef:
+#   kind: ClusterRole
+#   name: trustee-manager
+#   apiGroup: rbac.authorization.k8s.io
