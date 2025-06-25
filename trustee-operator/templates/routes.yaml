@@ -5,6 +5,7 @@ metadata:
   name: kbs-service
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+  namespace: {{ .Release.Namespace }}
 spec:
   to:
     kind: Service

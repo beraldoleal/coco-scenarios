@@ -4,6 +4,7 @@ metadata:
   name: trustee-operator
   annotations:
     argocd.argoproj.io/sync-wave: "-3"
+  namespace: {{ .Release.Namespace }}
 spec:
   channel: stable
   installPlanApproval: Automatic

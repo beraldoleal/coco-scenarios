@@ -4,6 +4,7 @@ metadata:
   name: kbs-client
   annotations:
     argocd.argoproj.io/sync-wave: "10"
+  namespace: {{ .Release.Namespace }}
 spec:
   restartPolicy: Never
   containers:

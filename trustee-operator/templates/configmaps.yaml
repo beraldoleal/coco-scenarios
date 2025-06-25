@@ -4,6 +4,7 @@ metadata:
   name: resource-policy
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
+  namespace: {{ .Release.Namespace }}
 data:
   policy.rego:
     package policy
@@ -15,6 +16,7 @@ metadata:
   name: rvps-reference-values
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
+  namespace: {{ .Release.Namespace }}
 data:
   reference-values.json: |
     [
@@ -26,6 +28,7 @@ metadata:
   name: kbs-config-cm
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
+  namespace: {{ .Release.Namespace }}
 data:
   kbs-config.toml: |
     [http_server]
