@@ -9,7 +9,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: kbs-client
-      image: quay.io/confidential-containers/kbs-client:v0.11.0
+      image: quay.io/confidential-containers/kbs-client:v0.13.0
       env:
         - name: TRUSTEE_URL
           value: >
