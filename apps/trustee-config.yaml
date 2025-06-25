@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trustee-config
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/beraldoleal/helms
+    targetRevision: main
+    path: charts/trustee-config
+    helm:
+      releaseName: trustee-config
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trustee-operator-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

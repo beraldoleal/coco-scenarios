@@ -2,11 +2,11 @@ operatorVersion: "1.9.0"
 
 # For pre-released builds (QE CatalogSource)
 customCatalog:
-  enabled: true
+  enabled: false
   operatorBuild: 23
 
 # Cloud mode = peerpods
-cloudMode: true
+cloudMode: false
 
 # pre-built or from-scratch
 podvmMethod: "pre-built"
