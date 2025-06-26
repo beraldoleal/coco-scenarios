@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sandboxed-containers-baremetal
+  namespace: openshift-gitops
+  annotations:
+    app.openshift.io/description: >
+      Deploys OpenShift Sandboxed Containers on baremetal using Kata runtime.
+      Installs OSC Operator and configures Kata without PeerPods or Confidential Containers.
+      Useful for environments where you want to run sandboxed containers
+      without the additional overhead of PeerPods or Confidential Containers.
+
+      Attention: Requires worker nodes with bare-metal or nested virtualization enabled.
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-sandboxed-containers
+  sources:
+    - repoURL: https://github.com/beraldoleal/helms
+      targetRevision: main
+      path: charts/osc-operator
+      helm:
+        parameters:
+          - name: dev.enabled
+            value: "true"
+          - name: dev.image
+            value: "quay.io/redhat-user-workloads/ose-osc-tenant/osc-test-fbc:osc-test-fbc-on-push-xq2c2-build-image-index"
+
+    - repoURL: https://github.com/beraldoleal/helms
+      targetRevision: main
+      path: charts/osc-config
+      helm:
+        parameters:
+          - name: confidential.enabled
+            value: "false"
+          - name: peerpods.enabled
+            value: "false"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,31 @@
+confidential:
+  enabled: false
+
+nodeSelector:
+  labels:
+    baremetal:
+        node-role.kubernetes.io/kata-pool: ""
+    cloud:
+        node-role.kubernetes.io/kata-remote-pool: ""
+
+# Cloud Mode
+peerpods:
+  enabled: true
+  provider: "azure"
+  providersConfigs:
+    gcp:
+      PODVM_IMAGE_NAME: ""
+      GCP_PROJECT_ID: "it-cloud-gcp-prod-osc-devel"
+      GCP_ZONE: "us-central1-a"
+      GCP_NETWORK: "default"
+      GCP_MACHINE_TYPE: "n1-standard-1"
+      PROXY_TIMEOUT: "5m"
+    
+    azure:
+      AZURE_IMAGE_ID: "${AZURE_IMAGE_ID}"
+      AZURE_RESOURCE_GROUP: "${AZURE_RESOURCE_GROUP}"
+      AZURE_REGION: "${AZURE_REGION}"
+      AZURE_SUBNET_ID: "${AZURE_SUBNET_ID}"
+      AZURE_NSG_ID: "${AZURE_NSG_ID}"
+      VXLAN_PORT: "9000"
+      PROXY_TIMEOUT: "5m"
