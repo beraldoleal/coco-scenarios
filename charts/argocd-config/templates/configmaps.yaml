@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+data:
+  resource.customizations.health.apps_Deployment: |
+    hs = {}
+    if obj.status.availableReplicas == obj.status.replicas then
+      hs.status = "Healthy"
+      hs.message = "Deployment is available"
+    else
+      hs.status = "Degraded"
+      hs.message = "Pods are not running"
+    end
+    return hs
+  resource.customizations.health.kataconfiguration.openshift.io_KataConfig: |
+    hs = {}
+    if obj.status.conditions != nil then
+      for condition in obj.status.conditions do
+        if condition.type == "InProgress" and condition.status == "True" then
+          hs.status = "Progressing"
+          hs.message = condition.message
+          return hs
+        end
+      end
+      hs.status = "Healthy"
+      hs.message = "Kata installation completed"
+    else
+      hs.status = "Unknown"
+      hs.message = "No status reported by KataConfig"
+    end
+    return hs
