@@ -13,13 +13,17 @@ peerpods:
   enabled: true
   provider: "azure"
   providersConfigs:
+    all:
+      VXLAN_PORT: "9000"
+      PROXY_TIMEOUT: "5m"
+      PODVM_IMAGE_URI: "oci::gcr.io/osc-gcp/podvm-disk-oci:rhel95_dmverity_luks"
+
     gcp:
       PODVM_IMAGE_NAME: ""
       GCP_PROJECT_ID: "it-cloud-gcp-prod-osc-devel"
       GCP_ZONE: "us-central1-a"
       GCP_NETWORK: "default"
       GCP_MACHINE_TYPE: "n1-standard-1"
-      PROXY_TIMEOUT: "5m"
     
     azure:
       AZURE_IMAGE_ID: "${AZURE_IMAGE_ID}"
@@ -27,5 +31,3 @@ peerpods:
       AZURE_REGION: "${AZURE_REGION}"
       AZURE_SUBNET_ID: "${AZURE_SUBNET_ID}"
       AZURE_NSG_ID: "${AZURE_NSG_ID}"
-      VXLAN_PORT: "9000"
-      PROXY_TIMEOUT: "5m"

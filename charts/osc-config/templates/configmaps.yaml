@@ -10,7 +10,6 @@ data:
 ---
 {{- if .Values.peerpods.enabled }}
 {{- $provider := .Values.peerpods.provider | default "" }}
-{{- $config := index .Values.peerpods.providersConfigs $provider | default dict }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -21,6 +20,12 @@ metadata:
 data:
   CLOUD_PROVIDER: "{{ $provider }}"
   DISABLECVM: "{{ not (.Values.confidential.enabled) }}"
+{{- $config := index .Values.peerpods.providersConfigs "all" | default dict }}
+{{- range $key, $value := $config }}
+  {{ $key }}: "{{ $value }}"
+{{- end }}
+
+{{- $config := index .Values.peerpods.providersConfigs $provider | default dict }}
 {{- range $key, $value := $config }}
   {{ $key }}: "{{ $value }}"
 {{- end }}
