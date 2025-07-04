@@ -20,6 +20,7 @@ metadata:
 data:
   CLOUD_PROVIDER: "{{ $provider }}"
   DISABLECVM: "{{ not (.Values.confidential.enabled) }}"
+  FOO: "bar"
 {{- $config := index .Values.peerpods.providersConfigs "all" | default dict }}
 {{- range $key, $value := $config }}
   {{ $key }}: "{{ $value }}"
