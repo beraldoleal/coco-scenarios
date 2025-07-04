@@ -26,8 +26,9 @@ peerpods:
       GCP_MACHINE_TYPE: "n1-standard-1"
     
     azure:
-      AZURE_IMAGE_ID: "${AZURE_IMAGE_ID}"
-      AZURE_RESOURCE_GROUP: "${AZURE_RESOURCE_GROUP}"
-      AZURE_REGION: "${AZURE_REGION}"
-      AZURE_SUBNET_ID: "${AZURE_SUBNET_ID}"
-      AZURE_NSG_ID: "${AZURE_NSG_ID}"
+      AZURE_IMAGE_ID: ""
+      AZURE_RESOURCE_GROUP: ""
+      AZURE_REGION: ""
+      AZURE_SUBNET_ID: ""
+      AZURE_NSG_ID: ""
+      AZURE_INSTANCE_SIZE: ""
