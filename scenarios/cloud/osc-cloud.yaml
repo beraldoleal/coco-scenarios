@@ -15,7 +15,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
-        repoURL: https://github.com/beraldoleal/helms.git
+        repoURL: https://github.com/beraldoleal/coco-scenarios.git
         revision: main
         directories:
           - path: charts/argocd-config
@@ -27,7 +27,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/beraldoleal/helms.git
+        repoURL: https://github.com/beraldoleal/coco-scenarios.git
         targetRevision: main
         path: '{{.path.path}}'
         helm:

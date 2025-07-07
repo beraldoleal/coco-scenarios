@@ -1,30 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: osc-coco-baremetal-as
+  name: osc-baremetal-as
   namespace: openshift-gitops
   annotations:
     description: >
-      Deploys OpenShift Sandboxed Containers on baremetal with Confidential
-      Containers enabled. Installs the OSC Operator and configures Kata with
-      Trustee for confidential workload support, without PeerPods. Useful for
-      environments requiring workload isolation with hardware-based
-      confidentiality on baremetal.
+      Deploys OpenShift Sandboxed Containers on baremetal using Kata runtime.
+      Installs OSC Operator and configures Kata without PeerPods or Confidential Containers.
+      Useful for environments where you want to run sandboxed containers
+      without the additional overhead of PeerPods or Confidential Containers.
 
-      Attention: Requires worker nodes with bare-metal or nested virtualization
-      and supported confidential hardware (TDX/SNP).
+      Attention: Requires worker nodes with bare-metal or nested virtualization enabled.
 
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
-        repoURL: https://github.com/beraldoleal/helms.git
+        repoURL: https://github.com/beraldoleal/coco-scenarios.git
         revision: main
         directories:
           - path: charts/argocd-config
-          - path: charts/trustee-operator
-          - path: charts/trustee-config
           - path: charts/osc-operator
           - path: charts/osc-config
   template:
@@ -33,13 +29,13 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/beraldoleal/helms.git
+        repoURL: https://github.com/beraldoleal/coco-scenarios.git
         targetRevision: main
         path: '{{.path.path}}'
         helm:
           valuesObject:
             confidential:
-              enabled: true
+              enabled: false
             peerpods:
               enabled: false
       destination:
