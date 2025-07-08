@@ -45,9 +45,3 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ if (hasPrefix "trustee-" .path.basename) }}trustee-operator-system{{ else if (hasPrefix "osc-" .path.basename) }}openshift-sandboxed-containers-operator{{ else if (hasPrefix "argocd-" .path.basename) }}openshift-gitops{{ else }}default{{ end }}'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=false

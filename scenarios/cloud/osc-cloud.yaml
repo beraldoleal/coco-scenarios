@@ -43,17 +43,11 @@ spec:
                   AZURE_RESOURCE_GROUP: "bleal-validatedpatter-6rpvc-rg"
                   AZURE_REGION: "centralus"
 
-                  AZURE_SUBNET_ID: "/subscriptions/1a84145c-974c-4237-9046-64a34c09752f/resourceGroups/bleal-validatedpatter-6rpvc-rg/providers/Microsoft.Network/virtualNetworks/bleal-validatedpatter-6rpvc-vnet/subnets/bleal-validatedpatter-6rpvc-worker-subnet"
-                  AZURE_NSG_ID: "/subscriptions/1a84145c-974c-4237-9046-64a34c09752f/resourceGroups/bleal-validatedpatter-6rpvc-rg/providers/Microsoft.Network/networkSecurityGroups/bleal-validatedpatter-6rpvc-nsg"
+                  AZURE_SUBNET_ID: ""
+                  AZURE_NSG_ID: ""
                   AZURE_INSTANCE_SIZE: "Standard_B2als_v2"
                   PODVM_IMAGE_URI: "oci::quay.io/snir/podvm-disk-oci:dm-verity-luks"
 
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{ if (hasPrefix "trustee-" .path.basename) }}trustee-operator-system{{ else if (hasPrefix "osc-" .path.basename) }}openshift-sandboxed-containers-operator{{ else if (hasPrefix "argocd-" .path.basename) }}openshift-gitops{{ else }}default{{ end }}'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: false
-        syncOptions:
-          - CreateNamespace=false
