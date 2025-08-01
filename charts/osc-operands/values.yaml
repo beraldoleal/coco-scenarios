@@ -1,5 +1,5 @@
 confidential:
-  enabled: false
+  enabled: true
 
 nodeSelector:
   labels:
